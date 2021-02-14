@@ -4,19 +4,19 @@ import styles from '../styles/Home.module.css'
 
 export async function getStaticProps() {
   const { db } = await connectToDatabase();
-  const movies = await db
-    .collection("movies")
+  const users = await db
+    .collection("users")
     .find({})
     .sort({ metacritic: -1 })
     .limit(1000)
     .toArray();
   return {
     props: {
-      movies: JSON.parse(JSON.stringify(movies)),
+      users: JSON.parse(JSON.stringify(users)),
     },
   };
 }
-export default function Home({movies}) {
+export default function Home({users}) {
   
   return (
     <div className={styles.container}>
@@ -30,11 +30,11 @@ export default function Home({movies}) {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
         <ul>
-        {movies.map((movie) => (
-          <li key={movie._id}>
-            <h2>{movie.title}</h2>
-            <h3>{movie.metacritic}</h3>
-            <p>{movie.plot}</p>
+        {users.map((user) => (
+          <li key={user._id}>
+            <h2>{user.username}</h2>
+            <h3>{user.email}</h3>
+            <p>{user.role}</p>
           </li>
         ))}
       </ul>
