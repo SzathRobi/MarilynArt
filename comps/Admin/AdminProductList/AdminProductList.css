@@ -1,0 +1,8 @@
+.admin-product-list {
+  width: calc(100% - 200px);
+  padding: 1rem;
+  position: relative;
+  left: 200px;
+  display: flex;
+  flex-wrap: wrap;
+}
