@@ -1,0 +1,21 @@
+.header {
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  display: flex;
+  position: relative;
+  padding: 5px;
+  padding-left: 1rem;
+}
+
+.hamburger {
+  position: absolute !important;
+  right: 0;
+}
+
+.subburger {
+  color: #fff;
+}
+
+.logo {
+  border-radius: 50%;
+  margin-left: 15px;
+}
