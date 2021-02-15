@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core";
 
 import AdminMenu from "../../comps/Admin/AdminMenu"
 import ComingSoonPage from '../../comps/Admin/ComingSoonPage';
-//import AdminAddItems from './AdminAddItems/AdminAddItems';
+import AdminAddItems from '../../comps/Admin/AdminAddItems/AdminAddItems';
 import AdminProductList from '../../comps/Admin/AdminProductList/AdminProductList';
 import { connectToDatabase } from '../../util/mongodb'
 //import {getSingleFiles, getMultipleFiles} from '../../data/api';
@@ -27,8 +27,6 @@ export async function getStaticProps() {
 
 
 function AdminPanel({multiplefiles}) {
-
-    console.log(multiplefiles)
 
   const classes = useStyles()
   //const user = useSelector(state => state.user)  
