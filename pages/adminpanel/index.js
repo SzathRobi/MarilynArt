@@ -12,21 +12,21 @@ import { connectToDatabase } from '../../util/mongodb'
 
 export async function getStaticProps() {
     const { db } = await connectToDatabase();
-    const multiplefiles = await db
-      .collection("multiplefiles")
+    const products = await db
+      .collection("products")
       .find({})
       //.sort({ metacritic: -1 })
       .limit(1000)
       .toArray();
     return {
       props: {
-        multiplefiles: JSON.parse(JSON.stringify(multiplefiles)),
+        products: JSON.parse(JSON.stringify(products)),
       },
     };
   }
 
 
-function AdminPanel({multiplefiles}) {
+function AdminPanel({products}) {
 
   const classes = useStyles()
   //const user = useSelector(state => state.user)  
@@ -67,7 +67,7 @@ useEffect(() => {
     <div className={classes.adminPanel}>
       <AdminMenu updateWhichPanel={updateWhichPanel}/>
       { whichPanel === 1 && <ComingSoonPage /> }
-      { whichPanel === 2 && <AdminProductList multiplefiles={multiplefiles}/> }
+      { whichPanel === 2 && <AdminProductList products={products}/> }
       { whichPanel === 3 && <AdminAddItems getsingle={() => getSingleFileslist()} getMultiple={() => getMultipleFilesList()}/> }
       { whichPanel === 4 && <ComingSoonPage /> }
     </div>

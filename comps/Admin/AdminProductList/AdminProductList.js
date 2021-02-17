@@ -2,7 +2,7 @@ import React from 'react'
 import AdminProductCard from './AdminProductCard'
 
 
-function AdminProductList({multiplefiles}) {
+function AdminProductList({products}) {
 
   const adminProductList = {
     width: "calc(100% - 200px)",
@@ -16,7 +16,7 @@ function AdminProductList({multiplefiles}) {
 
   return (
     <div style={adminProductList}>
-      {multiplefiles.map((product, index) => 
+      {products.map((product, index) => 
        <AdminProductCard file={product} key={index}/>
       )}
     </div>

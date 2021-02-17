@@ -20,10 +20,10 @@ export default function AdminProductDetails({file, detailOpen, handleCloseDetail
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">{"TERMÉKINFÓ"}</DialogTitle>
-        <img 
+       {/* <img 
         width={250}
         src={`http://localhost:5000/${file.files[0].filePath}`}
-      />  
+       />*/}  
         <DialogContent>
           <Typography>Termék: {file.name}</Typography>
           <Typography>Ár: {file.price}</Typography>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from "axios"
 import { 
     makeStyles, 
     TextareaAutosize, 
@@ -79,7 +80,16 @@ const checkObject = {
   desc:desc,
   story:story,
   category:category,
-  inStorage:inStorage
+  inStorage:inStorage,
+  date: Date.now()
+}
+
+const productUpload = async (data, options) => {
+  try {
+      await axios.post("http://localhost:3000/api/createProduct/", data);
+  } catch (error) {
+      throw error;
+  }
 }
 
 const uploadSingleFile = async () => {
@@ -95,19 +105,14 @@ const uploadSingleFile = async () => {
   await singleFileUpload(formData, singleFileOptions);
   props.getsingle();
 }
-const UploadMultipleFiles = async () => {
-  const formData = new FormData();
-  formData.append('name', name)
-  formData.append('price', price)
-  formData.append('desc', desc)
-  formData.append('story', story)
-  formData.append('category', category)
-  formData.append('inStorage', inStorage)
-  for (let i = 0; i < multipleFiles.length; i++) {
-    formData.append('files', multipleFiles[i]);                      
+const uploadProduct = async () => {
+  try{
+    console.log(checkObject)
+    await axios.post("http://localhost:3000/api/product/create", checkObject) 
   }
-  await multipleFilesUpload(formData, mulitpleFileOptions);
-  props.getMultiple();
+  catch(err){
+    console.log(err)
+  }
 }
 
   
@@ -155,7 +160,7 @@ const UploadMultipleFiles = async () => {
             </label>
           </div>  
         </div>
-        <Button onClick={() => UploadMultipleFiles()} className={classes.submitBtn} variant="contained">hozzáadás</Button>
+        <Button onClick={() => uploadProduct() /*UploadMultipleFiles()*/} className={classes.submitBtn} variant="contained">hozzáadás</Button>
       </form>    
     </div>
   )

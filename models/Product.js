@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose"
 
 const Schema = mongoose.Schema;
 
@@ -13,21 +13,25 @@ const productSchema = new Schema({
     },
     desc: {
         type: String,
-        required: true,
+      //  required: true,
     },
     story: {
         type: String,
-        required: true
+      //  required: true
     },
     category: {
         type: String,
-        required: true
+       // required: true
     },
     inStorage: {
         type: Boolean,
-        required: true
+      //  required: true
+    },
+    date: {
+      type: Date,
+      default: Date.now()
     },
     files: [Object]
 }, {timestamps: true});
 
-module.exports = mongoose.model('MultipleFile', productSchema);
+module.exports = mongoose.models.product || mongoose.model('product', productSchema);
