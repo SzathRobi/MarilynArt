@@ -7,11 +7,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Checkbox, FormControl, InputLabel, MenuItem, Select, TextareaAutosize, Typography } from '@material-ui/core';
-//import axios from "axios"
+import axios from "axios"
 //import "./AdminProductModal.css"
 export default function AdminProductModal({file, open, handleClose}) {
-
   const [newName, setNewName] = useState(file.name) 
+  const newTrimmedName = newName.replace(/\s+/g, '')
   const [newPrice, setNewPrice] = useState(file.price) 
   const [newCategory, setNewCategory] = useState(file.category) 
   const [newDesc, setNewDesc] = useState(file.desc) 
@@ -19,7 +19,9 @@ export default function AdminProductModal({file, open, handleClose}) {
   const [newInStorage, setNewInStorage] = useState(file.inStorage) 
 
   const newItem = {
+      id: file._id,
       name: newName,
+      trimmedName: newTrimmedName,
       price: newPrice,
       category: newCategory,
       desc: newDesc,
@@ -27,8 +29,9 @@ export default function AdminProductModal({file, open, handleClose}) {
       inStorage: newInStorage
   }
 
-  const changeItem = (newItem, id) => {
-    return axios.put(`http://localhost:5000/api/${file._id}/update`, newItem);
+  const changeItem = (newItem) => {
+    //return axios.put(`http://localhost:3000/api/product/update`, newItem);
+    return axios.put(`https://marilyn-art-amj7exip8.vercel.app/api/product/update`, newItem);
   };
 
   const inputContainer = {
@@ -42,7 +45,7 @@ export default function AdminProductModal({file, open, handleClose}) {
         <DialogTitle id="form-dialog-title">Termékmódosítás</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Írd át ami nem tetszik
+            ( Nevet nem lehet átírni MÉG .... bocsika )
           </DialogContentText>
           <div style={inputContainer}>
             <TextField

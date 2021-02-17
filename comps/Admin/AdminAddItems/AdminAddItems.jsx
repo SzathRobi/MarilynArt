@@ -24,6 +24,9 @@ function AdminAddItems(props) {
   const [name, setName] = useState("")
   const handleName = event => setName(event.target.value)
 
+  const trimmedName = name.replace(/\s+/g, '')
+ // console.log(trimmedName)
+
   const [price, setPrice] = useState(0)
   const handlePrice = event => setPrice(event.target.value)
 
@@ -76,6 +79,7 @@ const mulitpleFileOptions = {
 const checkObject = {
   file:singleFile,
   name:name,
+  trimmedName: trimmedName,
   price:price,
   desc:desc,
   story:story,
@@ -92,7 +96,7 @@ const productUpload = async (data, options) => {
   }
 }
 
-const uploadSingleFile = async () => {
+/*const uploadSingleFile = async () => {
   const formData = new FormData()
   formData.append('file', singleFile)
   formData.append('name', name)
@@ -104,11 +108,12 @@ const uploadSingleFile = async () => {
   console.log(checkObject)
   await singleFileUpload(formData, singleFileOptions);
   props.getsingle();
-}
+}*/
 const uploadProduct = async () => {
   try{
     console.log(checkObject)
-    await axios.post("http://localhost:3000/api/product/create", checkObject) 
+    //await axios.post("http://localhost:3000/api/product/create", checkObject) 
+    await axios.post("https://marilyn-art-amj7exip8.vercel.app/api/product/create", checkObject) 
   }
   catch(err){
     console.log(err)
@@ -171,9 +176,9 @@ export default AdminAddItems
 const useStyles = makeStyles({
     adminAddItems: {
         width: "80%",
-        height: "100%",
+        height: "calc(100% - 4rem)",
         position: "absolute",
-        top: 0,
+        top: "4rem",
         right: 0
     },
     form: {

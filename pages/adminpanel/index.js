@@ -6,6 +6,7 @@ import ComingSoonPage from '../../comps/Admin/ComingSoonPage';
 import AdminAddItems from '../../comps/Admin/AdminAddItems/AdminAddItems';
 import AdminProductList from '../../comps/Admin/AdminProductList/AdminProductList';
 import { connectToDatabase } from '../../util/mongodb'
+import AdminUserList from '../../comps/Admin/AdminUserList/AdminUserList';
 //import {getSingleFiles, getMultipleFiles} from '../../data/api';
 
 //import { connectToDatabase } from '../../util/mongodb'
@@ -18,15 +19,26 @@ export async function getStaticProps() {
       //.sort({ metacritic: -1 })
       .limit(1000)
       .toArray();
+      
+    const users = await db
+      .collection("users")
+      .find({})
+      .limit(1000)
+      .toArray();
+
+    const jsonProducts = JSON.parse(JSON.stringify(products))
+    const jsonUsers = JSON.parse(JSON.stringify(users))
+
     return {
       props: {
-        products: JSON.parse(JSON.stringify(products)),
+        products: jsonProducts,
+        users: jsonUsers
       },
     };
   }
 
 
-function AdminPanel({products}) {
+function AdminPanel({products, users}) {
 
   const classes = useStyles()
   //const user = useSelector(state => state.user)  
@@ -69,7 +81,7 @@ useEffect(() => {
       { whichPanel === 1 && <ComingSoonPage /> }
       { whichPanel === 2 && <AdminProductList products={products}/> }
       { whichPanel === 3 && <AdminAddItems getsingle={() => getSingleFileslist()} getMultiple={() => getMultipleFilesList()}/> }
-      { whichPanel === 4 && <ComingSoonPage /> }
+      { whichPanel === 4 && <AdminUserList users={users}/> }
     </div>
    // : <Redirect to="/MarilynArt"/>
   )

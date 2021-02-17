@@ -10,6 +10,7 @@ export default async (req, res) => {
         const { db } = await connectToDatabase();
         const newProduct = new Product ({
             name: req.body.name,
+            trimmedName: req.body.trimmedName,
             price: req.body.price,
             desc: req.body.desc,
             story: req.body.story,

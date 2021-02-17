@@ -1,6 +1,6 @@
 .adminProductCard {
   width: 250px;
-
+  min-height: 200px;
   margin: 1rem;
   position: relative;
 }

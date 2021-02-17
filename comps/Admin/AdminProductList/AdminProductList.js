@@ -8,10 +8,10 @@ function AdminProductList({products}) {
     width: "calc(100% - 200px)",
     padding: "1rem",
     position: "absolute",
-    top: 0,
+    top: "4rem",
     left: "200px",
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   }
 
   return (

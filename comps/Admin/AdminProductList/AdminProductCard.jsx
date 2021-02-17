@@ -4,21 +4,21 @@ import InfoIcon from '@material-ui/icons/Info';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import adminCardStyles from "../../../styles/AdminProductCard.module.css"
-//import axios from 'axios';
 import AdminProductModal from "./AdminProductModal/AdminProductModal"
 import AdminProductDetails from './AdminProductDetails/AdminProductDetails';
+import axios from 'axios';
 
 
 function AdminProductCard({file}) {
 
 
-   /* const removeTodo = (id) => {
-        axios({
-          method: "DELETE",
-          url: `http://localhost:5000/api/${file._id}/delete`,
-        });
+
+   const removeTodo = (name) => {
+        //axios.delete("http://localhost:3000/api/product/delete", { data: { name: name } })
+        axios.delete("https://marilyn-art-amj7exip8.vercel.app/api/product/delete", { data: { name: name } })
+        //console.log(file.name)
       };
-*/
+
 //edit modal
     const [open, setOpen] = React.useState(false);
 
@@ -56,7 +56,7 @@ function AdminProductCard({file}) {
         <IconButton onClick={handleClickOpen} className={adminCardStyles.iconBtn}>
           <EditIcon />
         </IconButton>
-        <IconButton onClick={() => removeTodo(file._id)} className={adminCardStyles.iconBtn}>
+        <IconButton onClick={() => removeTodo(file.name)} className={adminCardStyles.iconBtn}>
           <DeleteIcon />
         </IconButton>
       </CardActions>
