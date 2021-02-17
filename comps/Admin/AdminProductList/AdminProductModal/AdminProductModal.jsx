@@ -11,7 +11,6 @@ import axios from "axios"
 //import "./AdminProductModal.css"
 export default function AdminProductModal({file, open, handleClose}) {
   const [newName, setNewName] = useState(file.name) 
-  const newTrimmedName = newName.replace(/\s+/g, '')
   const [newPrice, setNewPrice] = useState(file.price) 
   const [newCategory, setNewCategory] = useState(file.category) 
   const [newDesc, setNewDesc] = useState(file.desc) 
@@ -21,7 +20,6 @@ export default function AdminProductModal({file, open, handleClose}) {
   const newItem = {
       id: file._id,
       name: newName,
-      trimmedName: newTrimmedName,
       price: newPrice,
       category: newCategory,
       desc: newDesc,

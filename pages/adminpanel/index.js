@@ -39,7 +39,7 @@ export async function getStaticProps() {
 
 
 function AdminPanel({products, users}) {
-
+console.log(products)
   const classes = useStyles()
   //const user = useSelector(state => state.user)  
 
